@@ -46,14 +46,14 @@
 
     async fill() {
       const s = $('#stage-fill'), g = $('.gauge', s), w = $('.seg.work', s), n = $('.n', s), v = $('.verdict', s);
-      g.classList.remove('lost'); v.innerHTML = ''; w.style.transition = 'none';
+      g.classList.remove('lost'); v.innerHTML = ''; w.style.transition = 'none'; $('.u', s).hidden = false;
       const width = tokens => Math.max(0, tokens / 1e6 * 100 - 6);
       await tween(60000, 966713, 4500, x => { n.textContent = fmt(x); w.style.width = width(x) + '%'; });
       say(v, 'Chaos: no window known, so no limit. It waits.');
       await wait(1200);
       say(v, '<strong>Claude Code compacts on its own, silently.</strong>');
       w.style.transition = ''; g.classList.add('lost'); w.style.width = '1%';
-      n.textContent = 'a short summary';
+      n.textContent = 'a short summary'; $('.u', s).hidden = true;
       await wait(900);
       say(v, 'The identity went with the rest of the history. No one was told.');
     },
@@ -61,7 +61,7 @@
     async after() {
       const s = $('#stage-after'), g = $('.gauge', s), w = $('.seg.work', s), n = $('.n', s), v = $('.verdict', s);
       const id = $('.seg.identity', s);
-      g.classList.remove('lost'); v.innerHTML = ''; w.style.transition = 'none'; id.textContent = 'soul · narrative · wake';
+      g.classList.remove('lost'); v.innerHTML = ''; w.style.transition = 'none'; $('.u', s).hidden = false; id.textContent = 'soul · narrative · wake';
       const width = tokens => Math.max(0, tokens / 1e6 * 100 - 6);
       const show = x => { n.textContent = fmt(x); w.style.width = width(x) + '%'; };
       say(v, 'First reply from the model: <strong>window = 1,000,000</strong>. Chaos keeps it.');
@@ -71,7 +71,7 @@
       say(v, 'Limit reached. The resident asks to finish one step first.');
       await tween(400000, 455000, 1200, show);
       say(v, 'Step done before the 500k ceiling. <strong>Compaction.</strong>');
-      w.style.transition = ''; g.classList.add('lost'); w.style.width = '1%'; n.textContent = 'a summary';
+      w.style.transition = ''; g.classList.add('lost'); w.style.width = '1%'; n.textContent = 'a summary'; $('.u', s).hidden = true;
       await wait(1200);
       g.classList.remove('lost');       say(v, 'Soul and self-narrative come back <strong>word for word</strong> from the session-start snapshot, as they will after every compaction.');
     },
