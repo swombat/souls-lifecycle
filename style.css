@@ -84,3 +84,4 @@ a{color:var(--teal)}
 .legend{font-size:.8rem;color:var(--soft);margin:.2rem 0 .6rem}
 .key{display:inline-block;width:.8rem;height:.8rem;border-radius:.2rem;vertical-align:-.1rem;margin-right:.2rem}
 .key.id{background:var(--coral)}.key.wk{background:#7a8aa6}
+.line.l80 span{left:auto;right:.3rem;text-align:right}
