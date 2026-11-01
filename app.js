@@ -36,12 +36,12 @@
       turn(ta, 'turn 1'); await wait(700);
       turn(ta, 'turn 2'); await wait(700);
       turn(ta, 'turn 3'); await wait(600);
-      await tween(0, 45, 2200, v => t.textContent = Math.floor(v));
-      A.className = 'sess old retired'; $('.label', A).textContent = 'session A · retired after 45 min idle';
+      await tween(0, 46, 2200, v => t.textContent = Math.floor(v));
+      turn(tb, 'new message');
+      A.className = 'sess old retired'; $('.label', A).textContent = 'session A · not resumed after more than 45 min idle';
       await wait(900);
       B.className = 'sess new live';
-      turn(tb, 'last 30 messages'); await wait(600);
-      turn(tb, 'turn 4'); t.textContent = '0';
+      turn(tb, 'up to 30 recent messages'); t.textContent = '0';
     },
 
     async fill() {
@@ -70,11 +70,10 @@
       await tween(360000, 400000, 900, show);
       say(v, 'Limit reached. The resident asks to finish one step first.');
       await tween(400000, 455000, 1200, show);
-      say(v, 'Step done, well short of the ceiling. <strong>Compaction.</strong>');
+      say(v, 'Step done before the 500k ceiling. <strong>Compaction.</strong>');
       w.style.transition = ''; g.classList.add('lost'); w.style.width = '1%'; n.textContent = 'a summary';
       await wait(1200);
-      g.classList.remove('lost'); id.textContent = 'soul · narrative';
-      say(v, 'The protected files come back <strong>word for word</strong>, from the snapshot taken when the session started.');
+      g.classList.remove('lost');       say(v, 'Soul and self-narrative come back <strong>word for word</strong> from the session-start snapshot, as they will after every compaction.');
     },
 
     async cross() {
@@ -95,11 +94,12 @@
       boxes[13].classList.add('busy');
       for (let i = 0; i < boxes.length; i++) {
         if (i === 13) continue;
-        boxes[i].classList.add('now'); st.textContent = 'Rebuilding ' + names[i] + ' (it was idle)';
+        boxes[i].classList.add('now'); st.textContent = 'Rebuilding ' + names[i] + ' (idle)';
         await wait(260);
         boxes[i].classList.remove('now'); boxes[i].classList.add('done');
       }
-      st.textContent = '17 of 18 rebuilt. Waiting for the busy one to be idle…';
+      boxes[13].textContent = 'busy · old image';
+      st.textContent = 'Still busy after the wait, so skipped: 17 of 18 rebuilt, the busy one stays on the old image until a later rebuild.';
     }
   };
 
